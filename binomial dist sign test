@@ -1,0 +1,27 @@
+A/B testing - binomial distribution
+invariant metric
+- count
+p: 0.5
+Ntotal: Ncon + Nexp
+sd = Math.sqrt(0.5 * 0.5 / Ntotal)
+margin of error = 1.96 * sd
+CI = 0.5 - margin, 0.5 + margin
+vs. observed = Nexp / Ntotal
+
+-proportion
+pcon: Xcon/Ncon
+sd = Math.sqrt(pcon * (1-pcon) / Ncon)
+margin of error = 1.96 * sd
+CI = pcon - margin, pcon + margin
+vs. observed = Xexp / Nexp
+
+variant metric
+- proportion
+p = (pcon + pexp)/(ncon + nexp).to_f
+sd = Math.sqrt(p * (1-p) * (1/ncon.to_f + 1/nexp.to_f))
+diff = pexp/nexp.to_f - pcon/ncon.to_f
+CI = [diff - 1.96 * sd, diff + 1.96 * sd]
+
+sign test
+https://www.graphpad.com/quickcalcs/binomial1.cfm
+Note: ßprobablity of success is 0.5
